@@ -1,0 +1,35 @@
+opam-version: "2.0"
+authors: "Jared Forsyth <jared@jaredforsyth.com>"
+homepage: "https://github.com/jaredly/reason-websocket"
+bug-reports: "https://github.com/jaredly/reason-websocket/issues"
+synopsis:"Websocket implementation in ReasonML"
+description:"""
+# Reason Websocket
+A fork of Based on https://github.com/vbmithr/ocaml-websocket
+
+A library for native websocket server development.
+
+Here's what it looks like to run a websocket server:
+
+```re
+Server.run(
+  ~port=9876,
+  ~onMessage=(text, reply) => {
+    reply("Thanks for the " ++ text)
+  },
+  ~httpFallback=(method, path, headers, msg, respond) => {
+    respond(
+          "HTTP/1.1 200 OK\r\nContent-Length: 5\r\nContent-Type: text/plain\r\n\r\nHello",
+    )
+  },
+  ~config=(module Server.UnixConfig: Server.Config)
+)
+```
+"""
+maintainer: [
+  "Élie BRAMI <elie.brami@epita.fr>"
+  "Jared Forsyth <jared@jaredforsyth.com>"
+]
+build: [
+  "dune build -p reason_websocket"
+]

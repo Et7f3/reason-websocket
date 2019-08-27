@@ -1,0 +1,5 @@
+(library
+ (name Server)
+ (public_name reason_websocket.server)
+ (modules :standard \ Test Socket)
+ (libraries threads))

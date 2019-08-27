@@ -57,7 +57,7 @@ module Rng = {
       let b = Bytes.create(size);
       for (i in 0 to size - 1) {
         Bytes.set(b, i, Char.chr(Random.State.bits(state) land 255))
-      }; 
+      };
       Bytes.to_string(b)
     }
   };
@@ -192,7 +192,7 @@ let upgrade_present = hs =>
       List.flatten(hs)
       |> (
         hs =>
-          List.map(String.(h => h |> String.lowercase |> trim), hs)
+          List.map(String.(h => h |> String.lowercase_ascii |> trim), hs)
           |> List.mem("upgrade")
       )
   );

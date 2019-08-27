@@ -85,8 +85,8 @@ module UnixConfig = {
     Some(Bytes.sub_string(bytes, 0, len))
   };
   let write = (sock, text) => {
-    let total = String.length(text);
-    let left = ref(String.length(text));
+    let total = Bytes.length(text);
+    let left = ref(Bytes.length(text));
     while (left^ > 0) {
       left := left^ - Unix.send(sock, text, total - left^, left^, []);
     };
