@@ -1,0 +1,3 @@
+(executable
+ (name ServerExample)
+ (libraries reason_websocket.server))
