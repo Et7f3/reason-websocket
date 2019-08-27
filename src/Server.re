@@ -77,7 +77,7 @@ module Server = (Config: Config) => {
   };
 };
 
-module UnixConfig = {
+module UnixConfig: Config = {
   type sock = Unix.file_descr;
   let read = (sock, maxlen) => {
     let bytes = Bytes.create(maxlen);
@@ -85,9 +85,10 @@ module UnixConfig = {
     Some(Bytes.sub_string(bytes, 0, len))
   };
   let write = (sock, text) => {
-    let total = Bytes.length(text);
-    let left = ref(Bytes.length(text));
+    let total = String.length(text);
+    let left = ref(String.length(text));
     while (left^ > 0) {
+      let text = Bytes.of_string(text);
       left := left^ - Unix.send(sock, text, total - left^, left^, []);
     };
   };
