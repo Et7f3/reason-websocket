@@ -1,6 +1,6 @@
 
 /* Using ocaml-ssl https://github.com/jaredly/ocaml-ssl */
-module SSLConfig = (Config: {let password: string; let certfile: string; let privkey: string;}) => {
+module SSLConfig = (Config: {let password: string; let certfile: string; let privkey: string;}): Server.Config => {
   type sock = Ssl.socket;
   let read = (sock, size) => {
     let buf = Bytes.create(size);
@@ -54,5 +54,5 @@ Server.run(
     let certfile = "cert.pem";
     let privkey = "privkey.pem";
     let password = "";
-  }): Server.Config)
+  }))
 )
